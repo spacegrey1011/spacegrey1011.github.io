@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrendLab — Enterprise Cosmetics Intelligence</title>
+  <meta name="description" content="Monitor TikTok cosmetics trends, analyze ingredient data, create products, and discover the Nano Banana serum." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍌</text></svg>" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="main-nav">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <div class="nav-logo">🍌</div>
+        <div>
+          <div class="nav-title">TrendLab</div>
+          <div class="nav-subtitle">Cosmetics Intelligence</div>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#trends" class="nav-link active">Trends</a></li>
+        <li><a href="#ingredients" class="nav-link">Ingredients</a></li>
+        <li><a href="#creator" class="nav-link">Creator</a></li>
+        <li><a href="#nano-banana" class="nav-link">Nano Banana</a></li>
+      </ul>
+      <div class="nav-status">
+        <span class="status-dot"></span>
+        <span id="live-time">Live Monitoring</span>
+        <button class="nav-settings-btn" onclick="SettingsController.open()" title="Settings & API Keys">⚙️</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <!-- ========== KPI Stats ========== -->
+    <section class="section" id="overview">
+      <div class="section-header">
+        <div>
+          <div class="section-label">
+            <span class="dot" style="background: var(--gradient-tiktok);"></span>
+            Dashboard Overview
+          </div>
+          <h1 class="section-title">TikTok Cosmetics Intelligence</h1>
+        </div>
+        <div style="display:flex;align-items:center;gap:var(--space-md);">
+          <div class="conn-indicator" data-status-for="tiktok"><span class="conn-dot conn-mock"></span><span class="conn-label">Mock</span></div>
+          <div class="section-badge" style="background: var(--accent-banana-dim); color: var(--accent-banana); border: 1px solid rgba(245,214,61,0.3);">
+            🔴 Live · March 2026
+          </div>
+        </div>
+      </div>
+      <div class="grid-4" id="stats-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ========== TikTok Trends ========== -->
+    <section class="section" id="trends">
+      <div class="section-header">
+        <div>
+          <div class="section-label">
+            <span class="dot" style="background: var(--gradient-tiktok);"></span>
+            Real-Time Monitoring
+          </div>
+          <h2 class="section-title">Trending in Cosmetics</h2>
+        </div>
+        <div style="display:flex;align-items:center;gap:var(--space-md);">
+          <div class="conn-indicator" data-status-for="tiktok"><span class="conn-dot conn-mock"></span><span class="conn-label">Mock</span></div>
+          <div class="section-badge" style="background: rgba(254,44,85,0.12); color: #fe2c55; border: 1px solid rgba(254,44,85,0.3);">
+            ♪ TikTok Live Feed
+          </div>
+          <button class="btn btn-secondary" style="padding:6px 12px;font-size:11px;" onclick="SettingsController.open(); SettingsController.switchTab('manual-trends');">+ Add Data</button>
+        </div>
+      </div>
+
+      <div class="trend-feed">
+        <div class="trend-list" id="trend-list">
+          <!-- Rendered by JS -->
+        </div>
+        <div class="trend-chart-area">
+          <div class="card mini-chart">
+            <div class="chart-title">Trend Velocity — 30 Day</div>
+            <canvas id="trend-canvas"></canvas>
+          </div>
+          <div class="card" style="padding: var(--space-lg);">
+            <div class="chart-title">Top Categories</div>
+            <div style="display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 13px;">Skincare</span>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div class="score-bar" style="width:140px;"><div class="score-bar-fill" style="width:92%;background:var(--accent-banana);"></div></div>
+                  <span style="font-size:12px;font-weight:600;">92%</span>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 13px;">Ingredients</span>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div class="score-bar" style="width:140px;"><div class="score-bar-fill" style="width:87%;background:var(--accent-pink);"></div></div>
+                  <span style="font-size:12px;font-weight:600;">87%</span>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 13px;">Anti-aging</span>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div class="score-bar" style="width:140px;"><div class="score-bar-fill" style="width:73%;background:var(--accent-teal);"></div></div>
+                  <span style="font-size:12px;font-weight:600;">73%</span>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 13px;">Brightening</span>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div class="score-bar" style="width:140px;"><div class="score-bar-fill" style="width:68%;background:var(--accent-violet);"></div></div>
+                  <span style="font-size:12px;font-weight:600;">68%</span>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 13px;">Clean Beauty</span>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div class="score-bar" style="width:140px;"><div class="score-bar-fill" style="width:61%;background:var(--accent-coral);"></div></div>
+                  <span style="font-size:12px;font-weight:600;">61%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Ingredient Data ========== -->
+    <section class="section" id="ingredients">
+      <div class="section-header">
+        <div>
+          <div class="section-label">
+            <span class="dot" style="background: var(--accent-teal);"></span>
+            Data Intelligence
+          </div>
+          <h2 class="section-title">Ingredient Analytics</h2>
+        </div>
+        <div style="display:flex;align-items:center;gap:var(--space-md);">
+          <div class="conn-indicator" data-status-for="ingredients"><span class="conn-dot conn-mock"></span><span class="conn-label">Mock</span></div>
+          <div class="section-badge" style="background: var(--accent-teal-dim); color: var(--accent-teal); border: 1px solid rgba(45,212,191,0.3);">
+            🧪 <span id="ingredient-count">10</span> Tracked Ingredients
+          </div>
+          <button class="btn btn-secondary" style="padding:6px 12px;font-size:11px;" onclick="SettingsController.open(); SettingsController.switchTab('manual-ingredients');">+ Add Data</button>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom: var(--space-xl);">
+        <div class="card ingredient-chart-container">
+          <div class="chart-title">Trend Score by Ingredient</div>
+          <canvas id="ingredient-canvas"></canvas>
+        </div>
+        <div class="card" style="padding: var(--space-lg);">
+          <div class="chart-title">Ingredient Insights</div>
+          <div style="margin-top: var(--space-md); display: flex; flex-direction: column; gap: var(--space-md);">
+            <div style="padding: var(--space-md); background: rgba(245,214,61,0.06); border-radius: var(--radius-md); border-left: 3px solid var(--accent-banana);">
+              <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">🔥 Highest Trending</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">Snail Mucin leads with a trend score of 94, driven by K-Beauty TikTok creators. Views up 215% this quarter.</div>
+            </div>
+            <div style="padding: var(--space-md); background: rgba(52,211,153,0.06); border-radius: var(--radius-md); border-left: 3px solid var(--success);">
+              <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">✅ Safest Profile</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">Hyaluronic Acid holds the top safety score of 98. Widely accepted across all skin types with minimal irritation risk.</div>
+            </div>
+            <div style="padding: var(--space-md); background: rgba(244,114,182,0.06); border-radius: var(--radius-md); border-left: 3px solid var(--accent-pink);">
+              <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">💡 Market Opportunity</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">Banana Extract has a low trend score (71) but high safety (94). Untapped potential for innovative formulations like Nano Banana.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ingredient-table-wrap">
+        <table class="ingredient-table" id="ingredient-table">
+          <thead>
+            <tr>
+              <th>Ingredient</th>
+              <th>INCI Name</th>
+              <th>Safety Score</th>
+              <th>Trend Score</th>
+              <th>Function</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody id="ingredient-tbody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ========== Product Creator ========== -->
+    <section class="section" id="creator">
+      <div class="section-header">
+        <div>
+          <div class="section-label">
+            <span class="dot" style="background: var(--accent-pink);"></span>
+            Product Pipeline
+          </div>
+          <h2 class="section-title">Create Product</h2>
+        </div>
+        <div class="section-badge" style="background: var(--accent-pink-dim); color: var(--accent-pink); border: 1px solid rgba(244,114,182,0.3);">
+          ✨ AI-Assisted
+        </div>
+      </div>
+
+      <div class="creator-layout">
+        <div class="card creator-form" id="creator-form-content">
+          <!-- Rendered by JS -->
+        </div>
+        <div class="card product-preview" id="product-preview">
+          <div class="preview-placeholder">
+            <div class="preview-icon">🧴</div>
+            <p>Configure your product to see a live preview</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Product Pipeline ========== -->
+    <section class="section" id="pipeline" style="display:none;">
+      <div class="section-header">
+        <div>
+          <div class="section-label">
+            <span class="dot" style="background: var(--accent-violet);"></span>
+            Product Pipeline
+          </div>
+          <h2 class="section-title">Generated Products &amp; Mockups</h2>
+        </div>
+        <div class="section-badge" style="background: rgba(167,139,250,0.12); color: var(--accent-violet); border: 1px solid rgba(167,139,250,0.3);">
+          📦 <span id="pipeline-count">0</span> Products
+        </div>
+      </div>
+      <div id="pipeline-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ========== Nano Banana Showcase ========== -->
+    <section class="section" id="nano-banana">
+      <div class="section-header">
+        <div>
+          <div class="section-label">
+            <span class="dot" style="background: var(--gradient-banana);"></span>
+            Featured Product
+          </div>
+          <h2 class="section-title">Product Mockup</h2>
+        </div>
+        <div class="section-badge" style="background: var(--accent-banana-dim); color: var(--accent-banana); border: 1px solid rgba(245,214,61,0.3);">
+          🍌 Flagship
+        </div>
+      </div>
+
+      <div class="nano-hero">
+        <div class="nano-image-wrap">
+          <div class="nano-image-glow"></div>
+          <img src="nano_banana.png" alt="Nano Banana Serum — Premium Skincare Product" id="nano-product-img" />
+        </div>
+        <div class="nano-content">
+          <div class="nano-badge">
+            <span>🧬</span> Nanotechnology Formula
+          </div>
+          <h3 class="nano-title">Nano Banana</h3>
+          <p class="nano-tagline">
+            Breakthrough nanotechnology repair serum powered by bio-enhanced banana extract. 
+            Delivers deep nourishment through nano-encapsulated actives for visible results in 14 days.
+          </p>
+
+          <div class="nano-specs">
+            <div class="spec-item">
+              <div class="spec-label">Volume</div>
+              <div class="spec-value">30ml</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Particle Size</div>
+              <div class="spec-value">50nm</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Safety Score</div>
+              <div class="spec-value" style="color: var(--success);">96/100</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Trend Score</div>
+              <div class="spec-value" style="color: var(--accent-pink);">Rising ↑</div>
+            </div>
+          </div>
+
+          <ul class="nano-features">
+            <li>Bio-enhanced Banana Extract (Musa Sapientum)</li>
+            <li>Nano-encapsulated Niacinamide & Hyaluronic Acid</li>
+            <li>Ceramide NP barrier repair complex</li>
+            <li>Centella Asiatica soothing blend</li>
+            <li>Peptide-driven collagen synthesis</li>
+            <li>Suitable for all skin types · Fragrance-free</li>
+          </ul>
+
+          <div class="nano-price">
+            <span class="nano-price-value">$78</span>
+            <span class="nano-price-unit">/ 30ml bottle</span>
+          </div>
+
+          <div class="nano-actions">
+            <button class="btn btn-primary">🛒 Add to Pipeline</button>
+            <button class="btn btn-secondary">📋 View Full Spec</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Settings Modal -->
+  <div class="settings-overlay" id="settings-modal">
+    <div class="settings-panel">
+      <div class="settings-header">
+        <div>
+          <h2 class="settings-title">⚙️ Settings & Data Sources</h2>
+          <p class="settings-subtitle">Connect APIs, add manual data, and manage integrations</p>
+        </div>
+        <button class="settings-close" onclick="SettingsController.close()">✕</button>
+      </div>
+      <div class="settings-tabs">
+        <button class="settings-tab active" data-tab="api-keys" onclick="SettingsController.switchTab('api-keys')">🔑 API Keys</button>
+        <button class="settings-tab" data-tab="manual-trends" onclick="SettingsController.switchTab('manual-trends')">📈 Manual Trends</button>
+        <button class="settings-tab" data-tab="manual-ingredients" onclick="SettingsController.switchTab('manual-ingredients')">🧪 Manual Ingredients</button>
+        <button class="settings-tab" data-tab="data-status" onclick="SettingsController.switchTab('data-status')">📡 Data Status</button>
+      </div>
+      <div class="settings-body" id="settings-content">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- TrendLab Engine Layer -->
+  <script src="engine/Database.js"></script>
+  <script src="engine/Parsers/IngredientParser.js"></script>
+  <script src="engine/Parsers/TikTokParser.js"></script>
+  <script src="engine/Parsers/OpenBeautyParser.js"></script>
+  <script src="engine/FormulationScorer.js"></script>
+  <script src="engine/Engine.js"></script>
+
+  <!-- Core App Scripts -->
+  <script src="api.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+```
